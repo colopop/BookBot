@@ -74,7 +74,7 @@ async def on_member_join(member):
 
 	)
 
-@bot.command(name='list-cw', help='Lists the content warnings for the club.')
+@bot.command(name='list-cw', help='Lists the content warnings for the club.', category='Content Warnings')
 async def list_cw(ctx):
 	#find appropriate guild(s)
 	if ctx.guild:
@@ -110,10 +110,10 @@ async def list_cw(ctx):
 					msg += f'No content warnings found for {guild.name}.'
 	await ctx.send(msg)
 
-@bot.command(name='add-cw', help="Adds a type of content to avoid.")
+@bot.command(name='add-cw', help="Adds a type of content to ban (with -ban) or flag (with -warn).", category="Content Warnings")
 async def add_cw(ctx, level=None, warning=None):
 	if None == warning or ('-ban' != level.lower() and '-warn' != level.lower()):
-		await ctx.send(f'Usage: `!add-cw warning_level "content_type"`. `warning_level` can be `-ban` or `-warn`. Example: `!add-cw -ban "pineapples on pizza"`')
+		await ctx.send(f'Usage: `!add-cw warning_level "content_type"`\n"warning_level" can be `-ban` or `-warn` \nExample: !add-cw -warn "the dog dies"')
 		return
 
 	#find appropriate guild(s)
