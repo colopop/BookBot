@@ -65,8 +65,17 @@ async def on_ready():
 			print(f'{guild_cwfilename} has been created.')
 	print(f'{bot.user} has connected to Discord!')
 
+@bot.event
+async def on_member_join(member):
+	await member.create_dm()
+	await member.dm_channel.send(
+
+		f'Hi {member.name}, welcome to {member.guild.name}! My name is Bookerton. You can message me for help with book nominations, content warnings, and various other things. For a list of my commands message `!help` here in our chat! If I seem to be broken, please notify @SardonicDragon or @colopop.'
+
+	)
+
 @bot.command(name='list-cw', help='Lists the content warnings for the club.')
-async def list_cw(ctx, arg="-list", ):
+async def list_cw(ctx):
 	#find appropriate guild(s)
 	if ctx.guild:
 		guilds = [ctx.guild]
